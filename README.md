@@ -6,7 +6,7 @@ https://www.vagrantup.com/
 
 様々な環境に移行可能な開発環境を簡単に構築、管理及び配布することができる開発環境作成ツール
 
-仮想マシン（VM）を動作させる仮想化ソフト操作を請け負ってくれるラッパーツール
+仮想マシン（VM）を動作させる仮想化ソフト操作を請け負ってくれるラッパーツール<br>
 VM の構成内容を Vagrantfile というテキストファイルとしてコード化できる
 
 ## メリット
@@ -115,7 +115,7 @@ Vagrant.configure(2) do |config|
   # ...
 end
 ```
-のブロック内に各設定を記述する  
+のブロック内に各設定を記述する<br>
 "2" は設定オブジェクトのバージョンで、Vagrant 1.1+ では "2" を使用
 
 ### Vagrant のバージョン指定
@@ -129,71 +129,171 @@ Vagrant.require_version ">= 1.3.5", "< 1.4.0"
 
 namespace: `config.vm`
 
-`config.vm.box`:  
-起動するマシン名  
-インストールされている box か、Atlas 上にある box の名前を設定
+<dl>
+<dt>
+    <code>
+        config.vm.box
+    </code>
+<dt>
+<dd>
+    起動するマシン名<br>
+    インストールされている box か、Atlas 上にある box の名前を設定
+</dd>
 
-`config.vm.box_url`:   
-box がある URL を指定  
-インストールされている box か、Atlas 上にある box の場合は不要
+<dt>
+    <code>
+        config.vm.box_url
+    </code>
+</dt>
+<dd>
+    box がある URL を指定<br>
+    インストールされている box か、Atlas 上にある box の場合は不要
+</dd>
 
-`config.vm.box_version`:   
-box のバージョンを指定  
-デフォルトは `">= 0"` で、最新バージョンを使用する
+<dt>
+    <code>
+        config.vm.box_version
+    </code>
+</dt>
+<dd>
+    box のバージョンを指定<br>
+    デフォルトは <code>">= 0"</code> で、最新バージョンを使用する
+</dd>
 
-`config.vm.boot_timeout`:  
-仮想マシンが起動するまでのタイムアウトを設定   
-デフォルトは 300 秒
+<dt>
+    <code>
+        config.vm.boot_timeout
+    </code>
+</dt>
+<dd>
+    仮想マシンが起動するまでのタイムアウトを設定<br>
+    デフォルトは 300 秒
+</dd>
 
-`config.vm.box_check_update`:  
-`vagrant up` を実行するたびに box のアップデートを確認する  
-デフォルトは "true"
+<dt>
+    <code>
+        config.vm.box_check_update
+    </code>
+</dt>
+<dd>
+    <code>vagrant up</code> を実行するたびに box のアップデートを確認する<br>
+    デフォルトは "true"
+</dd>
 
-`config.vm.graceful_halt_timeout`:   
-`vagrant halt` 実行時に正常終了するまでのタイムアウトを設定  
-デフォルトは 60 秒
+<dt>
+    <code>
+        config.vm.graceful_halt_timeout
+    </code>
+</dt>
+<dd>
+    <code>vagrant halt</code> 実行時に正常終了するまでのタイムアウトを設定<br>
+    デフォルトは 60 秒
+</dd>
 
-`config.vm.network`:   
-仮想マシンのネットワークを設定
+<dt>
+    <code>
+        config.vm.network
+    </code>
+</dt>
+<dd>
+    仮想マシンのネットワークを設定
+</dd>
 
-`config.vm.provision`:  
-仮想マシンのプロビジョニングを設定  
-仮想マシン作成時にソフトウェアのインストールと設定を行う
+<dt>
+    <code>
+        config.vm.provision
+    </code>
+</dt>
+<dd>
+    仮想マシンのプロビジョニングを設定<br>
+    仮想マシン作成時にソフトウェアのインストールと設定を行う
+</dd>
 
-`config.vm.synced_folder`:  
-ホストマシンとゲストマシンの同期ディレクトリの設定を行う
+<dt>
+    <code>
+        config.vm.synced_folder
+    </code>
+</dt>
+<dd>
+    ホストマシンとゲストマシンの同期ディレクトリの設定を行う
+</dd>
 
-`config.vm.provider`:  
-プロバイダ固有の設定を行う
+<dt>
+    <code>
+        config.vm.provider
+    </code>
+</dt>
+<dd>
+    プロバイダ固有の設定を行う
+</dd>
+</dl>
 
 ### SSH の設定
 
 namespace: `config.ssh`
 
-`config.ssh.username`:   
-SSH のデフォルトユーザ名を設定  
-デフォルトでは "vagrant"
+<dl>
+<dt>
+    <code>
+        config.ssh.username
+    </code>
+</dt>
+<dd>
+    SSH のデフォルトユーザ名を設定<br>
+    デフォルトでは "vagrant"
+</dd>
 
-`config.ssh.password`:   
-SSH ユーザのパスワードを記述   
-ただし Vagrant ではキーによる認証の方が推奨されている  
-`insert_key` が "true" の場合、Vagrant は自動でキーペアを挿入する
+<dt>
+    <code>
+        config.ssh.password
+    </code>
+</dt>
+<dd>
+    SSH ユーザのパスワードを記述<br>
+    ただし Vagrant ではキーによる認証の方が推奨されている<br>
+    <code>insert_key</code> が "true" の場合、Vagrant は自動でキーペアを挿入する
+</dd>
 
-`config.ssh.host`:   
-SSH 接続先のホスト名または IP   
-デフォルトでは指定する必要はない
+<dt>
+    <code>
+        config.ssh.host
+    </code>
+</dt>
+<dd>
+    SSH 接続先のホスト名または IP<br>
+    デフォルトでは指定する必要はない
+</dd>
 
-`config.ssh.port`:   
-SSH 接続先のポート番号  
-デフォルトは 22
+<dt>
+    <code>
+        config.ssh.port
+    </code>
+</dt>
+<dd>
+    SSH 接続先のポート番号<br>
+    デフォルトは 22
+</dd>
 
-`config.ssh.private_key_path`:   
-プライベートキーのパス  
-公開されている box を使用する場合、デフォルトのキーは安全とはいえない
+<dt>
+    <code>
+        config.ssh.private_key_path
+    </code>
+</dt>
+<dd>
+    プライベートキーのパス<br>
+    公開されている box を使用する場合、デフォルトのキーは安全とはいえない
+</dd>
 
-`config.ssh.insert_key`:   
-自動でキーペア（安全ではない）を挿入   
-デフォルトは "true"
+<dt>
+    <code>
+        config.ssh.insert_key
+    </code>
+</dt>
+<dd>
+    自動でキーペア（安全ではない）を挿入<br>
+    デフォルトは "true"
+</dd>
+</dl>
 
 ## 同期ディレクトリ
 Vagrant  ではホストマシンのディレクトリをゲストマシンと同期することができる
@@ -210,51 +310,84 @@ Vagrant.configure("2") do |config|
 end
 ```
 
-host dir
-: ホストマシンのディレクトリ
-  相対パスの場合はプロジェクトルートからのパスとなる
+<dl>
+<dt>host dir</dt>
+<dd>
+    ホストマシンのディレクトリ<br>
+    相対パスの場合はプロジェクトルートからのパスとなる
+</dd>
 
-guest dir
-: ゲストマシンのディレクトリ（絶対パス）
-  ディレクトリが存在しない場合は自動で作成される
+<dt>guest dir</dt>
+<dd>
+    ゲストマシンのディレクトリ（絶対パス）<br>
+    ディレクトリが存在しない場合は自動で作成される
+</dd>
+</dl>
 
 #### オプション
 
-`create` (boolean)
-: "true" の場合、ホストのディレクトリを自動で作成する
+<dl>
+<dt>
+<code>create</code> (boolean)
+</dt>
+<dd>
+"true" の場合、ホストのディレクトリを自動で作成する<br>
 デフォルトは "false"
+</dd>
 
-`disabled` (boolead)
-: "true" にした場合同期ディレクトリを無効にする
+<dt>
+<code>disabled</code> (boolead)
+</dt>
+<dd>
+"true" にした場合同期ディレクトリを無効にする<br>
+</dd>
 
-`group` (string)
-: 同期ディレクトリのグループを設定する
+<dt>
+<code>group</code> (string)
+</dt>
+<dd>
+同期ディレクトリのグループを設定する<br>
 デフォルトでは SSH のユーザとなる
+</dd>
 
-`owner` (string)
-: 同期ディレクトリのオーナーを設定する
+<dt>
+<code>owner</code> (string)
+</dt>
+<dd>
+同期ディレクトリのオーナーを設定する<br>
 デフォルトでは SSH のユーザとなる
+</dd>
 
-`mount_options` (array)
-: `mount` コマンドに渡されるオプション
+<dt>
+<code>mount_options</code> (array)
+</dt>
+<dd>
+<code>mount</code> コマンドに渡されるオプション
+</dd>
 
-`type` (string)
-: 同期ディレクトリのタイプを設定する
+<dt>
+<code>type</code> (string)
+</dt>
+<dd>
+同期ディレクトリのタイプを設定する
+</dd>
+
+</dl>
 
 
 ### NFS
-Network File System の仕組みを利用してディレクトリを同期する  
+Network File System の仕組みを利用してディレクトリを同期する
 
-VirtualBox よりもパフォーマンス面で有利  
+VirtualBox よりもパフォーマンス面で有利
 
-Mac/Linux 限定  
+Mac/Linux 限定
 Windows の場合、設定しても無視されてデフォルトの設定が適用される
 
 #### 前提条件
-ホストマシンには `nfsd` がインストールされていて、 NFS サーバデーモンが動作している必要がある  
+ホストマシンには `nfsd` がインストールされていて、 NFS サーバデーモンが動作している必要がある
 通常は、Mac も Linux も初期状態でインストールされている
 
-また、ゲストマシンも NFS をサポートしている必要がある  
+また、ゲストマシンも NFS をサポートしている必要がある
 
 VirtualBox プロバイダーを使用する場合は、 private network の設定を行っている必要がある
 
@@ -271,15 +404,29 @@ end
 #### NFS オプション
 NFS 特有のオプションは `config.vm.synced_folder` のパートに記述する
 
-`nfs_export` (boolean)
-: "false" にすると、自動で `/etc/exports` に設定を書き込まない
+<dl>
+<dt>
+<code>nfs_export</code> (boolean)
+</dt>
+<dd>
+"false" にすると、自動で <code>/etc/exports</code> に設定を書き込まない
+</dd>
 
-`nfs_udp` (boolean)
-: "true" にすると UDP を使用して通信する
+<dt>
+<code>nfs_udp</code> (boolean)
+</dt>
+<dd>
+"true" にすると UDP を使用して通信する
+</dd>
 
-`nfs_version` (string | integer)
-: NFS プロトコルのバージョンを指定する
+<dt>
+<code>nfs_version</code> (string | integer)
+</dt>
+<dd>
+NFS プロトコルのバージョンを指定する<br>
 デフォルトは 3
+</dd>
+</dl>
 
 
 ### RSync
@@ -290,28 +437,47 @@ NFS 特有のオプションは `config.vm.synced_folder` のパートに記述�
 `vagrant rsync-auto` コマンドを実行すると、ファイルに変更があった時に自動で同期する
 
 #### 前提条件
-ホストマシンに `rsync` または `rsync.exe` にパスが通っている必要がある  
+ホストマシンに `rsync` または `rsync.exe` にパスが通っている必要がある
 Windows の場合は、 Cygwin か MinGW での導入が推奨されている
 
 ゲストマシンにも `rsync` は必要であるが、普通 Vagrant が自動でインストールしてくれる
 
 #### オプション
-`rsync__args` (array of strings)
-: `rsync` コマンドに渡す引数
-デフォルトは、 `["--verbose", "--archive", "--delete", "-z", "--copy-links"]`
 
-`rsync__auto` (boolean)
-: "false" にすると `rsync-auto` の監視対象から除外される
+<dl>
+<dt>
+<code>rsync__args</code> (array of strings)
+</dt>
+<dd>
+<code>rsync</code> コマンドに渡す引数<br>
+デフォルトは、 <code>["--verbose", "--archive", "--delete", "-z", "--copy-links"]</code>
+</dd>
+
+<dt>
+<code>rsync__auto</code> (boolean)
+</dt>
+<dd>
+"false" にすると <code>rsync-auto</code> の監視対象から除外される<br>
 デフォルトは "true"
+</dd>
 
-`rsync__chown` (boolean)
-: "false" にすると、同期ディレクトリに対する `owner` と `group` オプションは無視され、 Vagrant は同期時に `chown -R` を実行しない
+<dt>
+<code>rsync__chown</code> (boolean)
+</dt>
+<dd>
+"false" にすると、同期ディレクトリに対する <code>owner</code> と <code>group</code> オプションは無視され、 Vagrant は同期時に <code>chown -R</code> を実行しない<br>
 デフォルトは "true"
+</dd>
 
-`rsync__exclude` (string or array of strings)
-: 除外するファイルまたはディレクトリのリスト
-デフォルトで ".vagrant" ディレクトリは除外される
+<dt>
+<code>rsync__exclude</code> (string or array of strings)
+</dt>
+<dd>
+除外するファイルまたはディレクトリのリスト<br>
+デフォルトで ".vagrant" ディレクトリは除外される<br>
 ".git" などのバージョン管理ディレクトリも除外することが推奨される
+</dd>
+</dl>
 
 #### 例
 ```
@@ -344,17 +510,31 @@ Vagrant が Windows 上で動作している必要がある
 ゲストマシンが Linux の場合、 SMB ファイルシステムをマウントするために、`smbfs` または `cifs` が必要であるが、普通 Vagrant によって自動でインストールされる
 
 #### オプション
-`smb_host` (string)
-: マウントしたいホストの IP アドレス
+<dl>
+<dt>
+<code>smb_host</code> (string)
+</dt>
+<dd>
+マウントしたいホストの IP アドレス<br>
 デフォルトでは Vagrant によって自動で設定される
+</dd>
 
-`smb_username` (string)
-: マウントの認証に使用するユーザ名
+<dt>
+<code>smb_username</code> (string)
+</dt>
+<dd>
+マウントの認証に使用するユーザ名<br>
 設定しない場合は起動時に入力する
+</dd>
 
-`smb_password` (string)
-: マウントの認証に使用するパスワード
+<dt>
+<code>smb_password</code> (string)
+</dt>
+<dd>
+マウントの認証に使用するパスワード<br>
 設定しない場合は起動時に入力する
+</dd>
+</dl>
 
 #### 例
 ```
@@ -369,19 +549,19 @@ end
 VirtualBox 共有フォルダシステムを利用して双方向にファイルの変更を同期する
 
 #### 注意事項
-`sendfile` に関連する VirtualBox のバグで、ファイルが破損したり更新できない場合がある  
+`sendfile` に関連する VirtualBox のバグで、ファイルが破損したり更新できない場合がある
 Web サーバの設定で `sendfile` を無効にする必要がある
 
 Nginx
-: 
+:
 ```
 sendfile off;
 ```
 
 Apache
-: 
+:
 ```
-EnableSendfile off 
+EnableSendfile off
 ```
 
 ## ネットワーク
@@ -396,7 +576,7 @@ Vagrant.configure("2") do |config|
 	config.vm.network "forwarded_port", guest: 80, host: 8080
 end
 ```
-それぞれのネットワークタイプには `:forwarded_port` のような識別子がある  
+それぞれのネットワークタイプには `:forwarded_port` のような識別子がある
 それぞれの識別子のあとに続くパラメータによって設定を行う
 
 #### 複数ネットワーク
@@ -417,27 +597,50 @@ end
 ホストの 8080 番ポートを通してゲストの 80 番ポートにアクセスする
 
 #### オプション
-`guest` (int) 必須
-: ゲストマシン上のホストに対して開けたいポート番号  
+
+<dl>
+<dt>
+<code>guest</code> (int) 必須
+</dt>
+<dd>
+ゲストマシン上のホストに対して開けたいポート番号<br>
 任意のポートを指定できる
+</dd>
 
-`guest_ip` (string)
-: forwarded port にバインドさせたいゲストの IP アドレス  
-指定しない場合、ポートは全ての IP に対して有効になる  
+<dt>
+<code>guest_ip</code> (string)
+</dt>
+<dd>
+forwarded port にバインドさせたいゲストの IP アドレス<br>
+指定しない場合、ポートは全ての IP に対して有効になる<br>
 デフォルトは空
+</dd>
 
-`host` (int) 必須
-: ゲストのポートにアクセスさせたいホストマシン上のポート番号  
+<dt>
+<code>host</code> (int) 必須
+</dt>
+<dd>
+ゲストのポートにアクセスさせたいホストマシン上のポート番号<br>
 Vagrant が root 権限で実行（非推奨）されていない場合、 1024 より大きい番号を指定する必要がある
+</dd>
 
-`host_ip` (string)
-: forwarded port にバインドさせたいホストの IP アドレス  
-指定しない場合、ポートは全ての IP に対して有効になる  
+<dt>
+<code>host_ip</code> (string)
+</dt>
+<dd>
+forwarded port にバインドさせたいホストの IP アドレス<br>
+指定しない場合、ポートは全ての IP に対して有効になる<br>
 デフォルトは空
+</dd>
 
-`protcol` (string)
-: forwarded port に対して許可するプロトコルを "tcp" か "udp" で指定する  
+<dt>
+<code>protcol</code> (string)
+</dt>
+<dd>
+forwarded port に対して許可するプロトコルを "tcp" か "udp" で指定する<br>
 デフォルトは "tcp"
+</dd>
+</dl>
 
 #### Forwarded Port プロトコル
 同じポートで両方のプロトコルを待ち受けたい場合、以下のように設定する
@@ -495,7 +698,7 @@ end
 
 パブリックネットワーク設定を行うことで、パブリックからのアクセスを許可することができる
 
-※ Vagrant box はデフォルトのままではパスワードや SSH キーペアなどに対して、セキュアではない  
+※ Vagrant box はデフォルトのままではパスワードや SSH キーペアなどに対して、セキュアではない
 パブリックネットワークを設定する場合には、セキュリティに関して設定をよくレビューする必要がある
 
 #### DHCP
@@ -578,19 +781,19 @@ $ vagrant plugin list
 ### vagrant-vbox-snapshot
 仮想マシンのスナップショットをとってくれるプラグイン
 ```
-# スナップショットをとる
+// スナップショットをとる
 $ vagrant snapshot take <NAME>
 
-# 直前のスナップショットの復元
+// 直前のスナップショットの復元
 $ vagrant snapshot back
 
-# 任意のスナップショットの復元
+// 任意のスナップショットの復元
 $ vagrant snapshot go <NAME>
 
-# スナップショットの削除
+// スナップショットの削除
 $ vagrant snapshot delete <NAME>
 
-# スナップショットの一覧表示
+// スナップショットの一覧表示
 $ vagrant snapshot list
 ```
 
