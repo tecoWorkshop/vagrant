@@ -1,0 +1,50 @@
+---
+- hosts: web
+  sudo: yes
+
+  tasks:
+    - name: update yum
+      shell: yum -y update
+
+    - name: install libselinux-python
+      yum: name=libselinux-python state=present
+
+    - name: install httpd
+      yum: name=httpd state=latest
+      notify:
+        - restart_httpd
+
+    - name: install php
+      yum: name={{item}} state=latest
+      with_items:
+        - php
+        - php-pdo
+        - php-mysqlnd
+        - php-mbstring
+      notify:
+        - restart_httpd
+
+    - name: install mariadb
+      yum: name={{item}} state=latest
+      with_items:
+        - mariadb
+        - mariadb-server
+      notify:
+        - restart_mariadb
+
+    - name: copy php.ini
+      copy: src=php.ini dest=/etc/php.ini owner=root group=root mode=0644
+
+    - name: copy httpd.conf
+      copy: src=httpd.conf dest=/etc/httpd/conf/httpd.conf owner=root group=root mode=0644
+
+    - name: link document root
+      file: src=/vagrant/html dest=/var/www/html owner=root group=root state=link force=yes
+
+  handlers:
+    - name: restart_httpd
+      service: name=httpd state=restarted enabled=yes
+
+    - name: restart_mariadb
+      service: name=mariadb state=restarted enabled=yes
+
