@@ -1,0 +1,47 @@
+---
+- hosts: web
+  sudo: yes
+
+  tasks:
+    - name: update yum
+      shell: yum -y update
+
+    - name: install libselinux-python
+      yum: name=libselinux-python state=present
+
+    - name: install nginx
+      yum: name=nginx state=latest
+      notify:
+        - restart_nginx
+
+    - name: install php
+      yum: name={{item}} state=latest
+      with_items:
+        - php
+        - php-pdo
+        - php-mysqlnd
+        - php-mbstring
+        - php-fpm
+      notify:
+        - restart_php-fpm
+
+    - name: copy php.ini
+      copy: src=php.ini dest=/etc/php.ini owner=root group=root mode=0644
+
+    - name: copy php-fpm.d/www.conf
+      copy: src=www.conf dest=/etc/php-fpm.d/www.conf owner=root group=root mode=0644
+
+    - name: copy nginx.conf
+      copy: src=nginx.conf dest=/etc/nginx/nginx.conf owner=root group=root mode=0644
+
+    - name: link document root
+      file: src=/vagrant/html dest=/var/www/html owner=root group=root state=link force=yes
+
+  handlers:
+    - name: restart_php-fpm
+      service: name=php-fpm state=restarted enabled=yes
+
+    - name: restart_nginx
+      service: name=nginx state=restarted enabled=yes
+
+
