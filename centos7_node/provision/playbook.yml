@@ -1,0 +1,25 @@
+---
+- hosts: web
+  sudo: yes
+
+  tasks:
+    - name: update yum
+      shell: yum -y update
+
+    - name: install libselinux-python
+      yum: name=libselinux-python state=present
+
+    - name: install node
+      yum: name=nodejs state=latest enablerepo=epel
+      notify:
+        - restart_node_server
+
+    - name: install npm
+      yum: name=npm state=latest enablerepo=epel
+      notify:
+        - restart_node_server
+
+  handlers:
+    - name: restart_node_server
+      shell: node /vagrant/web/example.js &
+
