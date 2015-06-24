@@ -10,7 +10,7 @@
 
 *ダウンロード*
 
-https://www.virtualbox.org/wiki/Downloads
+[download](https://www.virtualbox.org/wiki/Downloads)
 
 * VirtualBox 4.3.2 ※最新を選ぶ
 
@@ -30,9 +30,12 @@ https://www.virtualbox.org/wiki/Downloads
 
 *ダウンロード*
 
-http://downloads.vagrantup.com/
+[download](http://downloads.vagrantup.com/)
 
 * Vagrant_1.3.5.msi  ※最新を選ぶ
+[20150624]  
+Latest [vagrant_1.7.2](https://dl.bintray.com/mitchellh/vagrant/vagrant_1.7.2.msi) だと、saharaプラグインのインストールでエラーになる。  
+Old Version [vagrant_1.7.1](https://www.vagrantup.com/download-archive/v1.7.1.html) で、環境構築可能となる。
 
 *インストール*
 
@@ -42,23 +45,23 @@ http://downloads.vagrantup.com/
 
 コマンドプロンプトにて作業
 
-<pre>
+<code>
 $ vagrant box add centos64 https://github.com/2creatives/vagrant-centos/releases/download/v0.1.0/centos64-x86_64-20131030.box
-</pre>
+</code>
 
 *saharaプラグインのインストール*
 
 コマンドプロンプトにて作業
 
-<pre>
+<code>
 $ vagrant plugin install sahara
-</pre>
+</code>
 
 *Macはvagrant-triggersのプラグインもインストール*
 
-<pre>
+<code>
 $ vagrant plugin install vagrant-triggers
-</pre>
+</code>
 
 
 ---
@@ -73,33 +76,33 @@ svnから「vagrant」ディレクトリをチェックアウトする。
 
 現在のディレクトリ構成
 
-<pre>
+<code>
 /app
 /framework
 /library
-</pre>
+</code>
 
 チェックアウト後のディレクトリ構成
 
-<pre>
+<code>
 /app
 /framework
 /library
 /vagrant
-</pre>
+</code>
 
 「vagrant」ディレクトリから「Vagrantfile.chef」と「Vagrantfile.win」もしくは「Vagrantfile.mac」を「Vagrantfile」としてコピーする
 
 チェックアウト後のディレクトリ構成
 
-<pre>
+<code>
 /app
 /framework
 /library
 /vagrant
 Vagrantfile
 Vagrantfile.chef
-</pre>
+</code>
 
 ※最新のvagrantディレクトリを周りの人にもらいましょう！
 
@@ -111,33 +114,33 @@ vagrantコマンドは全てプロジェクトのディレクトリで行う。
 
 コマンドプロンプトにて作業
 
-<pre>
+<code>
 $ cd <TESTのプロジェクトのディレクトリ>
 $ vagrant up --no-provision  # 起動時にプロビジョニングされるのでしないように引数を渡す
 $ vagrant sandbox on
-</pre>
+</code>
 
 *プロビジョニング*
 
 コマンドプロンプトにて作業
 
-<pre>
+<code>
 $ vagrant provision
 $ vagrant sandbox commit
 $ vagrant sandbox off
-</pre>
+</code>
 
 ### VMに接続
 
 macとかだと vagrant sshでいけるけどwinだと無理なので下記の方法で接続する。
 ログインして問題がないかチェック
-<pre>
+<code>
 ホスト：127.0.0.1
 ポート：2222
 ユーザ：vagrant
 パスワード：vagrant
 秘密鍵：(ユーザディレクトリ)/.vagrant.d/insecure_private_ke
-</pre>
+</code>
 
 http://localtest-hoge/ のような個人のホスト名でアクセスして動作できるかチェックする。
 問題がなければコミットしてVMの状態を保存する。
@@ -145,9 +148,9 @@ http://localtest-hoge/ のような個人のホスト名でアクセスして動
 
 コマンドプロンプトにて作業
 
-<pre>
+<code>
 $ vagrant sandbox commit
-</pre>
+</code>
 
 
 ### VMがうまく起動しない場合
@@ -157,20 +160,20 @@ VT-ｘが有効になっていないエラーが出る場合は、BIOSの設定�
 参考URL：http://futurismo.biz/archives/1647
 
 timezoneがゴニョゴニョ言われる場合はvagrant/cookbooks/timezone/metadata.rbの中身に以下を追加
-<pre>
+<code>
 version          "0.0.2"
 name             "timezone"　←ここを追加
-</pre>
+</code>
 
 ### 韓国版について
 
 日本版とは別に韓国版を作成する場合は
 vagrantファイルのポート設定を変更する必要がある
 たとえばこんな感じ
-<pre>
+<code>
   config.vm.network :forwarded_port, guest: 80, host: 2223
   config.vm.network :forwarded_port, guest: 8080, host: 8081
-</pre>
+</code>
 あとは、日本版と同じように設定を行う。
 puttyからの接続は実際にプロビジョニングした際に割り当てられるポートを使用する
 
@@ -187,20 +190,20 @@ switch rulesのURLパターンにhttp://localtest-kor-hoge/*を入れてproxy pr
 ポート変更した際にmemcachedのエラーが多発するようになり
 確認してみると本番のmemcachedやDBを見に行く状態になっていました。
 localtest-kor-hoge.iniファイルに以下のものを追加すると直りました。
-<pre>
+<code>
 [memcached]
 servers.0.host = localhost
 servers.0.port = 11211
 servers.0.persistent = TRUE
-</pre>
+</code>
 
 ### キャッシュの消し方
 
 キャッシュすべて消えます。
 
-<pre>
+<code>
 $ sudo service memcached restart
-</pre>
+</code>
 
 ### php-timecopの設定
 
@@ -211,7 +214,7 @@ vagrantファイルにtimecopのインストールが書かれていれば
 puttyなどでログインを行い、php-timecopのインストールを行います。
 rootのパスワードはvagrantです
 
-<pre>
+<code>
 su -
 git clone https://github.com/hnw/php-timecop.git
 cd php-timecop
@@ -228,65 +231,65 @@ extension=timecop.so
 :wq
 
 /etc/init.d/httpd restart
-</pre>
+</code>
 
 ## vagrantの使い方
 
 起動
 
-<pre>
+<code>
 $ vagrant up
-</pre>
+</code>
 
 終了
 
-<pre>
+<code>
 $ vagrant halt
-</pre>
+</code>
 
 ログイン
 
-<pre>
+<code>
 $ vagrant ssh
-</pre>
+</code>
 
 Vagrantfile作成
 
-<pre>
+<code>
 $ vagrant init
-</pre>
+</code>
 
 再起動(Vagrantfileリロード)
 
-<pre>
+<code>
 $ vagrant reload
-</pre>
+</code>
 
 sandoboxモード
 offにすると前回のコミットまで戻り、sandoboxモードを抜ける。
 
-<pre>
+<code>
 $ vagrant sandbox on
 $ vagrant sandbox off
-</pre>
+</code>
 
 sandbox状態確認
 
-<pre>
+<code>
 $ vagrant sandbox status
-</pre>
+</code>
 
 sandboxコミット
 
-<pre>
+<code>
 $ vagrant sandbox commit
-</pre>
+</code>
 
 sandboxロールバック
 
-<pre>
+<code>
 $ vagrant sandbox rollbak
-</pre>
+</code>
 
 ---
 
@@ -294,13 +297,13 @@ $ vagrant sandbox rollbak
 
 基本的に1度設定してしまえば2回目からはvagrant upをすれば起動するようになるが
 まれに以下のようなエラーが出る場合がある
-<pre>
+<code>
 Bringing machine 'default' up with 'virtualbox' provider...
 Your VM has become "inaccessible." Unfortunately, this is a critical error
 with VirtualBox that Vagrant can not cleanly recover from. Please open VirtualBox
 and clear out your inaccessible virtual machines or find a way to fix
 them.
-</pre>
+</code>
 この場合は、virtual-boxが設定されているディレクトリ（\user\(ユーザー名)\VirtualBox VMs\(環境名)）に行き
 (設定名).vbox-tmpファイルをリネームで(設定名).vboxに変更することで直った
 
@@ -314,26 +317,26 @@ them.
 
 通常の開発環境にアクセスする。
 
-<pre>
+<code>
 http://localtest-hoge/
-</pre>
+</code>
 
 *プロファイリング*
 
 開発環境にアクセスしプロファイリングをする。
 
-<pre>
+<code>
 http://localtest-hoge:8080/
-</pre>
+</code>
 
 *プロファイリング結果確認*
 
 上記でプロファイリングを行った結果を解析する。
 ※初回のアクセス時はプロファイリングを行ったあとでなければ表示されないので注意。
 
-<pre>
+<code>
 http://localhost/xhgui/webroot/
-</pre>
+</code>
 
 ---
 
@@ -342,40 +345,40 @@ http://localhost/xhgui/webroot/
 ### メニュー
 
 Recent
-<pre>
+<code>
 最近のアクセス順で表示する
-</pre>
+</code>
 
 Longest wall time
-<pre>
+<code>
 処理時間が長い順で表示する
-</pre>
+</code>
 
 Most CPU
-<pre>
+<code>
 CPUの処理時間が長い順で表示
-</pre>
+</code>
 
 Most memory
-<pre>
+<code>
 メモリ使用量が多い順で表示
-</pre>
+</code>
 
 Custom View
-<pre>
+<code>
 条件を指定して解析結果から検索
-</pre>
+</code>
 
 Watch Functions
-<pre>
+<code>
 監視する関数を指定する
 設定された関数はアクセスの詳細にて抽出して表示される
-</pre>
+</code>
 
 Waterfall
-<pre>
+<code>
 条件で抽出し、アクセスをウォーターフォールで表示
-</pre>
+</code>
 
 ---
 
@@ -383,37 +386,37 @@ Waterfall
 
 URL
 
-<pre>
+<code>
 解析したURL
 クリックするとページ単位の解析結果に移動
-</pre>
+</code>
 
 
 Time
-<pre>
+<code>
 解析した日時
 クリックするとアクセス単位の解析結果に移動
-</pre>
+</code>
 
 wt
-<pre>
+<code>
 処理にかかった時間
-</pre>
+</code>
 
 cpu
-<pre>
+<code>
 CPUの処理にかかった時間
-</pre>
+</code>
 
 mu
-<pre>
+<code>
 処理が呼び出された時点でのメモリの使用容量(たぶん)
-</pre>
+</code>
 
 pmu
-<pre>
+<code>
 処理中のメモリ使用容量の最大値(たぶん)
-</pre>
+</code>
 
 ---
 
@@ -429,94 +432,94 @@ pmu
 解析リストからTimeをクリックして移動
 
 THIS RUN
-<pre>
+<code>
 解析結果の要約
-</pre>
+</code>
 
 GET
-<pre>
+<code>
 GETで送信されたパラメータ一覧
-</pre>
+</code>
 
 SERVER
-<pre>
+<code>
 HTTPリクエスト情報
-</pre>
+</code>
 
 WATERFALL
-<pre>
+<code>
 ウォーターフォールへのリンク
-</pre>
+</code>
 
 Watch Functions
-<pre>
+<code>
 監視している関数の抽出リスト
-</pre>
+</code>
 
 Exclusive Wall Time
-<pre>
+<code>
 処理時間のTOP6をグラフで表示
-</pre>
+</code>
 
 Memory Hogs
-<pre>
+<code>
 メモリ使用量のTOP6をグラフで表示
-</pre>
+</code>
 
 
 Function
-<pre>
+<code>
 コールされた関数名
-</pre>
+</code>
 
 Call Count
-<pre>
+<code>
 コールされた回数
-</pre>
+</code>
 
 Exclusive Wall Time
-<pre>
+<code>
 この関数単体の処理時間
 (この関数から呼び出された関数の処理時間を除外した処理時間)
-</pre>
+</code>
 
 Exclusive CPU
-<pre>
+<code>
 この関数単体のCPU処理時間
 (この関数から呼び出された関数のCPU処理時間を除外したCPU処理時間)
-</pre>
+</code>
 
 Exclusive Memory Usage
-<pre>
+<code>
 この関数単体の呼び出された時のメモリ使用量(たぶん)
 (この関数から呼び出された関数のメモリ使用量を除外したメモリ使用量)
 
-</pre>
+</code>
 Exclusive Peak Memory Usage
-<pre>
+<code>
 この関数単体の実行中のメモリ使用量のピーク(たぶん)
 (この関数から呼び出された関数のメモリ使用量のピークを除外したメモリ使用量のピーク)
-</pre>
+</code>
 
 Inclusive Wall Time
-<pre>
+<code>
 この関数から呼び出された関数の処理時間も含むトータルの処理時間
-</pre>
+</code>
 
 Inclusive CPU
-<pre>
+<code>
 この関数から呼び出された関数のCPU処理時間も含むトータルのCPU処理時間
-</pre>
+</code>
 
 Inclusive Memory Usage
-<pre>
+<code>
 この関数から呼び出された関数のメモリ使用量も含む、関数呼び出し時のメモリ使用量(たぶん)
-</pre>
+</code>
 
 Inclusive Peak Memory Usage
-<pre>
+<code>
 この関数から呼び出された関数を含む関数の処理全体でのメモリ使用量のピーク
-</pre>
+</code>
 
 
 ---
@@ -525,6 +528,6 @@ Inclusive Peak Memory Usage
 
 新開発環境ではxdebugを使用し、リモートデバッグが可能。
 
-<pre>
+<code>
 ポート：9001
-</pre>
+</code>
