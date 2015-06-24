@@ -27,9 +27,6 @@ sudo systemctl start firewalld && sudo systemctl enable firewalld
 sudo firewall-cmd --add-service=http && sudo firewall-cmd --add-service=http --permanent
 sudo firewall-cmd --add-service=https && sudo firewall-cmd --add-service=https --permanent
 
-# mysql users
-#sudo mysql < /vagrant/bootstrap.sql
-
 # Document root
 sudo mkdir -p /var/www/virtualhost/eccube
 
@@ -38,9 +35,6 @@ sudo mkdir -p /etc/httpd/conf.d
 sudo cp /vagrant/vhost.conf > sudo /etc/httpd/conf.d/vhost.conf
 sudo rm -f /etc/httpd/conf/httpd.conf
 sudo cp /vagrant/httpd.conf > sudo /etc/httpd/conf/httpd.conf
-
-# mysql data import
-#sudo mysql -u eccube_user --password=tecoeccubeuser < /vagrant/database-init.sql
 
 # link
 sudo ln -s /vagrant/eccube/data/ /var/www/virtualhost/eccube/data
