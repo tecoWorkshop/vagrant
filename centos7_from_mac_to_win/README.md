@@ -1,0 +1,2 @@
+## windowsにvagrant環境を構築し、macからsshやwindowsのvagrant環境にhttpアクセスする
+
