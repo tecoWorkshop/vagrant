@@ -1,0 +1,56 @@
+NameVirtualHost *:80
+NameVirtualHost *:8080
+
+<VirtualHost *:80>
+    ServerName test
+    DocumentRoot /vagrant/app/public_html
+    CustomLog "|/usr/sbin/rotatelogs /var/log/httpd/test.access_log.%Y%m%d 86400 540" axis env=!no_log
+    ErrorLog  "|/usr/sbin/rotatelogs /var/log/httpd/test.error_log.%Y%m%d 86400 540"
+
+    <Directory "/vagrant">
+        Options -Indexes FollowSymLinks MultiViews IncludesNoExec
+        AllowOverride ALL
+    </Directory>
+
+    <Directory "/vagrant/.svn">
+        Order allow,deny
+    </Directory>
+</VirtualHost>
+
+<VirtualHost *:8080>
+    ServerName test
+    DocumentRoot /vagrant/app/public_html
+    CustomLog "|/usr/sbin/rotatelogs /var/log/httpd/test.prof.access_log.%Y%m%d 86400 540" axis env=!no_log
+    ErrorLog  "|/usr/sbin/rotatelogs /var/log/httpd/test.prof.error_log.%Y%m%d 86400 540"
+
+    <Directory "/vagrant">
+        Options -Indexes FollowSymLinks MultiViews IncludesNoExec
+        AllowOverride ALL
+    </Directory>
+
+    <Directory "/vagrant/.svn">
+        Order allow,deny
+    </Directory>
+
+    <Directory "/vagrant/app/public_html">
+      <IfModule php5_module>
+        php_value auto_prepend_file "/vagrant/vagrant/htdocs/xhgui/external/header.php"
+      </IfModule>
+    </Directory>
+</VirtualHost>
+
+<VirtualHost *:80>
+    ServerName localhost
+    DocumentRoot /vagrant/vagrant/htdocs
+    CustomLog "|/usr/sbin/rotatelogs /var/log/httpd/local.access_log.%Y%m%d 86400 540" axis env=!no_log
+    ErrorLog  "|/usr/sbin/rotatelogs /var/log/httpd/local.error_log.%Y%m%d 86400 540"
+
+    <Directory "/vagrant/vagrant/htdocs">
+        Options -Indexes FollowSymLinks MultiViews IncludesNoExec
+        AllowOverride ALL
+        <IfModule php5_module>
+          php_value memory_limit 256M
+        </IfModule>
+    </Directory>
+</VirtualHost>
+
