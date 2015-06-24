@@ -1,12 +1,12 @@
-h1. 新開発環境の使い方
+# 新開発環境の使い方
 
-h2. ローカル環境の設定
+## ローカル環境の設定
 
 開発環境を使用するために必要なアプリをインストールする。
 
 ---
 
-h3. VirtualBox
+### VirtualBox
 
 *ダウンロード*
 
@@ -19,14 +19,14 @@ https://www.virtualbox.org/wiki/Downloads
 インストール後にインストールしたディレクトリにPATHを通す。
 デフォでは「C:\Program Files\Oracle\VirtualBox」にインストールされた。
 
-# 「田(windows key) + Pause 」でシステムを起動
-# 左の「システムの詳細設定」→「詳細設定」→「環境変数」
-# 「ユーザ環境変数」から「Path」を選択して「編集」
-# 「変数値」の値の最後に「;(上記インストールディレクトリ)」を追加
+1. 「田(windows key) + Pause 」でシステムを起動
+1. 左の「システムの詳細設定」→「詳細設定」→「環境変数」
+1. 「ユーザ環境変数」から「Path」を選択して「編集」
+1. 「変数値」の値の最後に「;(上記インストールディレクトリ)」を追加
 
 ---
 
-h3. Vagrant
+### Vagrant
 
 *ダウンロード*
 
@@ -63,11 +63,11 @@ $ vagrant plugin install vagrant-triggers
 
 ---
 
-h2. 開発環境の構築
+## 開発環境の構築
 
 開発環境でTESTの動作が行えるようにようにする。
 
-h3. 設定ファイルの準備
+### 設定ファイルの準備
 
 svnから「vagrant」ディレクトリをチェックアウトする。
 
@@ -103,7 +103,7 @@ Vagrantfile.chef
 
 ※最新のvagrantディレクトリを周りの人にもらいましょう！
 
-h3. VMのプロビジョニング
+### VMのプロビジョニング
 
 vagrantコマンドは全てプロジェクトのディレクトリで行う。
 
@@ -127,7 +127,7 @@ $ vagrant sandbox commit
 $ vagrant sandbox off
 </pre>
 
-h3. VMに接続
+### VMに接続
 
 macとかだと vagrant sshでいけるけどwinだと無理なので下記の方法で接続する。
 ログインして問題がないかチェック
@@ -150,7 +150,7 @@ $ vagrant sandbox commit
 </pre>
 
 
-h3. VMがうまく起動しない場合
+### VMがうまく起動しない場合
 
 VT-ｘが有効になっていないエラーが出る場合は、BIOSの設定でVT-x(Intel(R) Virtualization Technology)を
 有効にしてください。
@@ -162,7 +162,7 @@ version          "0.0.2"
 name             "timezone"　←ここを追加
 </pre>
 
-h3. 韓国版について
+### 韓国版について
 
 日本版とは別に韓国版を作成する場合は
 vagrantファイルのポート設定を変更する必要がある
@@ -194,7 +194,7 @@ servers.0.port = 11211
 servers.0.persistent = TRUE
 </pre>
 
-h3. キャッシュの消し方
+### キャッシュの消し方
 
 キャッシュすべて消えます。
 
@@ -202,7 +202,7 @@ h3. キャッシュの消し方
 $ sudo service memcached restart
 </pre>
 
-h3. php-timecopの設定
+### php-timecopの設定
 
 vagrantファイルにtimecopのインストールが書かれていれば
 以下の作業はいりません
@@ -230,7 +230,7 @@ extension=timecop.so
 /etc/init.d/httpd restart
 </pre>
 
-h2. vagrantの使い方
+## vagrantの使い方
 
 起動
 
@@ -290,7 +290,7 @@ $ vagrant sandbox rollbak
 
 ---
 
-h2. エラー対処
+## エラー対処
 
 基本的に1度設定してしまえば2回目からはvagrant upをすれば起動するようになるが
 まれに以下のようなエラーが出る場合がある
@@ -306,7 +306,7 @@ them.
 
 ---
 
-h2. 開発環境の使い方
+## 開発環境の使い方
 
 「localtest-hoge」は個人が開発環境で設定しているホスト名
 
@@ -337,9 +337,9 @@ http://localhost/xhgui/webroot/
 
 ---
 
-h2. XHGuiの使い方
+## XHGuiの使い方
 
-h3. メニュー
+### メニュー
 
 Recent
 <pre>
@@ -379,7 +379,7 @@ Waterfall
 
 ---
 
-h3. 解析リスト
+### 解析リスト
 
 URL
 
@@ -417,14 +417,14 @@ pmu
 
 ---
 
-h3. ページ単位の解析結果
+### ページ単位の解析結果
 
 解析リストからURLをクリックして移動
 ページ単位で過去に解析した履歴が表示される。
 
 ---
 
-h3. アクセス単位の解析結果
+### アクセス単位の解析結果
 
 解析リストからTimeをクリックして移動
 
@@ -521,7 +521,7 @@ Inclusive Peak Memory Usage
 
 ---
 
-h2. xdebugの使い方
+## xdebugの使い方
 
 新開発環境ではxdebugを使用し、リモートデバッグが可能。
 
