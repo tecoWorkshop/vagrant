@@ -13,6 +13,7 @@ sudo yum -y install php php-pgsql
 sudo yum -y install php php-gd
 sudo yum -y install php php-freetype2
 sudo yum -y install php php-mbstring
+sudo yum -y install php-xml
 
 #mariadb
 sudo yum -y install mariadb-server
